@@ -63,11 +63,13 @@ module Paymill
         @response = https.request(https_request)
       end
       raise AuthenticationError if @response.code.to_i == 401
+      raise APIError.new("Transaction Error") if @response.code.to_i == 403
+      raise APIError.new("Not found") if @response.code.to_i == 404
+      raise APIError.new("Precondition Failed") if @response.code.to_i == 412
       raise APIError if @response.code.to_i >= 500
-
       data = JSON.parse(@response.body)
       raise APIError.new(data["error"]) if data["error"]
-
+      raise APIError unless @response.code.to_i == 200
       data
     end
   end
