@@ -64,7 +64,6 @@ module Paymill
                 Rails.logger.error "XXXX"        
 
       Rails.logger.error   https_request.body.inspect
-      Rails.logger.error   https_request.url.inspect        
         
                         Rails.logger.error "YYYY"        
 
