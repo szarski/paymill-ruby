@@ -61,6 +61,7 @@ module Paymill
         https_request.basic_auth(api_key, "")
         https_request.set_form_data(data) if [:post, :put].include? http_method
         @response = https.request(https_request)
+        Rails.logger.error @response.inspect
       end
       raise AuthenticationError if @response.code.to_i == 401
       raise APIError.new("Transaction Error") if @response.code.to_i == 403
