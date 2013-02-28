@@ -60,6 +60,14 @@ module Paymill
               end
         https_request.basic_auth(api_key, "")
         https_request.set_form_data(data) if [:post, :put].include? http_method
+        
+                Rails.logger.error "XXXX"        
+
+      Rails.logger.error   https_request.body.inspect
+      Rails.logger.error   https_request.url.inspect        
+        
+                        Rails.logger.error "YYYY"        
+
         @response = https.request(https_request)
         Rails.logger.error "AAAA"        
 Rails.logger.error @response.inspect
