@@ -74,6 +74,10 @@ module Paymill
         @response = https.request(https_request)
         Rails.logger.error "AAAA"        
 Rails.logger.error @response.inspect
+Rails.logger.error @response.body.inspect
+
+Rails.logger.error @response.code.inspect
+
         Rails.logger.error "BBBB"
 end
       raise AuthenticationError if @response.code.to_i == 401
